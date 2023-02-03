@@ -5,6 +5,6 @@ type: application
 version: 1.0.0
 dependencies:
   - name: redis
-    version: "7.0.8"
+    version: "17.7.1"
     repository: "https://charts.bitnami.com/bitnami"
     #repository: "https://artifacthub.io/packages/helm/bitnami/redis"
