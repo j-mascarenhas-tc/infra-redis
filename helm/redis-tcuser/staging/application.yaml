@@ -8,12 +8,12 @@ metadata:
 spec:
   project: tc-staging
   source:
-    repoURL: git@github.com:j-mascarenhas-tc/infra-redis.git
+    repoURL: https://github.com/j-mascarenhas-tc/infra-redis.git
     path: helm/redis-tcuser/staging
     targetRevision: master
     helm:
       valueFiles:
         - values.yaml
   destination:
-    server: pricefeeds-staging
+    server: https://34.135.59.191
     namespace: redis-teste
