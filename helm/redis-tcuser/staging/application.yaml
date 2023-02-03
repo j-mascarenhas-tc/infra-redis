@@ -9,7 +9,7 @@ spec:
   project: tc-staging
   source:
     repoURL: git@github.com:j-mascarenhas-tc/infra-redis.git
-    path: helm/development
+    path: helm/redis-tcuser/staging
     targetRevision: main
     helm:
       valueFiles:
