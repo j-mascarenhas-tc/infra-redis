@@ -1,0 +1,65 @@
+architecture: replication
+auth:
+  enabled: false
+persistence:
+  size: 1Gi
+metrics:
+  enabled: true
+  service:
+    type: LoadBalancer
+    annotations:
+      networking.gke.io/load-balancer-type: "Internal"
+
+sentinel:
+  enabled: true
+  service:
+    type: LoadBalancer
+    annotations:
+      networking.gke.io/load-balancer-type: "Internal"
+      networking.gke.io/internal-load-balancer-allow-global-access: true
+
+pdb:
+  create: true
+  minAvailable: 1
+replica:
+  ## @param replica.replicaCount Number of Redis&reg; replicas to deploy
+  ##
+  replicaCount: 3
+
+  service:
+    type: LoadBalancer
+    annotations:
+      networking.gke.io/load-balancer-type: "Internal"
+  resources:
+    limits:
+      cpu: 800m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  persistence:
+    size: 1Gi
+
+  podAffinityPreset: ""
+  ## @param replica.podAntiAffinityPreset Pod anti-affinity preset. Ignored if `replica.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Node affinity preset
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param replica.nodeAffinityPreset.type Node affinity preset type. Ignored if `replica.affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: "soft"
+    ## @param replica.nodeAffinityPreset.key Node label key to match. Ignored if `replica.affinity` is set
+    ##
+    key: "spot"
+    ## @param replica.nodeAffinityPreset.values Node label values to match. Ignored if `replica.affinity` is set
+    ## E.g.
+    values:
+      - "true"
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: "kubernetes.io/hostname"
+      whenUnsatisfiable: ScheduleAnyway

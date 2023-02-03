@@ -1,0 +1,9 @@
+# https://mixi-developers.mixi.co.jp/argocd-with-helm-fee954d1003c
+apiVersion: v2
+name: redis-user
+type: application
+version: 1.0.0
+dependencies:
+  - name: redis-user
+    version: "7.0.8"
+    repository: "https://artifacthub.io/packages/helm/bitnami/redis"

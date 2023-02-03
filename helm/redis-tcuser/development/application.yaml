@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-user
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/manifest-generate-paths: ..
+spec:
+  project: tc-staging
+  source:
+    repoURL: git@github.com:j-mascarenhas-tc/infra-redis.git
+    path: helm/development
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: pricefeeds-staging
+    namespace: redis-teste
