@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: git@github.com:j-mascarenhas-tc/infra-redis.git
     path: helm/redis-tcuser/staging
-    targetRevision: main
+    targetRevision: master
     helm:
       valueFiles:
         - values.yaml
