@@ -1,27 +1,11 @@
-# https://mixi-developers.mixi.co.jp/argocd-with-helm-fee954d1003c
-# name: redis-user
-# type: application
-# annotations:
-#   category: Database
-#   licenses: Apache-2.0
-# apiVersion: v2
-# appVersion: 7.0.8
-# dependencies:
-#   - name: redis
-#     version: "17.7.1"
-#     #repository: "https://charts.bitnami.com/bitnami"
-#     repository: "https://charts.bitnami.com/bitnami"
-
 apiVersion: v2
 name: redis-user
 type: application
 annotations:
   category: Database
   licenses: Apache-2.0
-appVersion: 7.0.8
 version: 1.0.0
 dependencies:
   - name: redis
     version: "17.7.1"
-    #repository: "https://charts.bitnami.com/bitnami"
     repository: "https://charts.bitnami.com/bitnami"

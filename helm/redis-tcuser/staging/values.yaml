@@ -3,11 +3,11 @@ auth:
   enabled: false
 master:
   persistence:
-  size: 1Gi
+    size: 1Gi
   service:
-  type: LoadBalancer
-  annotations:
-  networking.gke.io/load-balancer-type: "Internal"
+    type: LoadBalancer
+    annotations:
+      networking.gke.io/load-balancer-type: "Internal"
 metrics:
   enabled: true
 # service:
